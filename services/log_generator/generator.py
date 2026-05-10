@@ -4,6 +4,7 @@ from shared.models.log_event import LogEvent
 from shared.constants.events_info import APS, SSIDS, MACS, BAND, CHANNELS_5GHz, CHANNELS_2_4GHz
 from services.log_generator.scenarios.auth_attack import auth_attack
 from services.log_generator.scenarios.rogue_mac import rogue_mac_event
+from services.log_generator.scenarios.signal_anomaly import signal_anomaly_event
 from .producer import send_event
 from shared.config.settings import WIFI_LOG_TOPIC
 
@@ -25,30 +26,37 @@ def generate_normal_event():
 
 def run():
     while True:
-        # 65% normal traffic, 15% rogue, 20% auth attack
+        # 70% normal traffic, 10% rogue, 15% auth attack, 5% signal anomaly
         choice = random.random()
-        if choice < 0.65:
-            event = generate_normal_event()
+        if choice < 0.05:
+            event = signal_anomaly_event()
             send_event(
                 WIFI_LOG_TOPIC,
                 event.to_dict()
             )
-            print(f"Sent: {event}")
-        elif choice < 0.80:  # rogue ap
+            print(f"Sent signal anomaly event: {event}")
+        elif choice < 0.10:  # rogue ap
             event = rogue_mac_event()
             send_event(
                 WIFI_LOG_TOPIC,
                 event.to_dict()
             )
             print(f"Sent rogue event: {event}")
-        else:
+        elif choice < 0.15:
             events = auth_attack()
             for event in events:
                 send_event(
                     WIFI_LOG_TOPIC,
                     event.to_dict()
                 )
-                print(f"Sent attack event: {event}")
+                print(f"Sent auth attack event: {event}")
+        else:
+            event = generate_normal_event()
+            send_event(
+                WIFI_LOG_TOPIC,
+                event.to_dict()
+            )
+            print(f"Sent: {event}")
 
         time.sleep(1)
 

@@ -31,6 +31,15 @@ for message in consumer:
     alerts = process_event(event)
 
     if alerts:
-        print("\n🚨 ALERT DETECTED")
-        print(alerts)
+        print("\n" + "=" * 50)
+
+        for alert in alerts:
+            print(
+                f"🚨 {alert['type']} "
+                f"[{alert['severity']}]"
+            )
+
+            print(alert)
+
+        print("=" * 50)
 
