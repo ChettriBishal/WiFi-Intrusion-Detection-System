@@ -1,10 +1,8 @@
 services:
-#  zookeeper:
-#    image: confluentinc/cp-zookeeper:latest
-#    environment:
-#      ZOOKEEPER_CLIENT_PORT: 2181
-#    ports:
-#      - "2181:2181"
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -44,4 +42,4 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
 
       # REQUIRED in KRaft
-      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+      CLUSTER_ID: BishalCluster101
