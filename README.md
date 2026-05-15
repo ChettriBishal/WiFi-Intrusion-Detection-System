@@ -74,7 +74,7 @@ Observed: -90 dBm
 
 # System Architecture
 
-<img width="778" height="771" alt="wifis" src="https://github.com/user-attachments/assets/152af9c7-295b-4ec4-8ef7-d819678f5981" />
+<img width="772" height="765" alt="wifis" src="https://github.com/user-attachments/assets/a2c1934b-c3bd-49d7-be0f-b25e413aef30" />
 
 
 ---
