@@ -206,6 +206,9 @@ You should see:
 
 # Running the Project
 
+<img width="800" height="450" alt="output_3" src="https://github.com/user-attachments/assets/b7c14c10-bf81-421e-93d9-cad7917e1cb6" />
+
+
 Open **3 terminals**.
 
 ---
